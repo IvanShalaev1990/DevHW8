@@ -38,7 +38,7 @@ public class DatabaseQueryService {
         return list;
     }
     @SneakyThrows
-    public List<ProjectPrices> printProjectPrices() {
+    public List<ProjectPrices> projectPrices() {
         List<ProjectPrices> list = new ArrayList<>();
         Statement statement = Database.getInstance()
                 .getConnection()
@@ -105,12 +105,12 @@ public class DatabaseQueryService {
         dbQueryService.findMaxProjectsClient().forEach(System.out::println);
         dbQueryService.findLongestProject().forEach(System.out::println);
         dbQueryService.findMaxSalaryWorker().forEach(System.out::println);
-        dbQueryService.printProjectPrices().forEach(System.out::println);
+        dbQueryService.projectPrices().forEach(System.out::println);
         dbQueryService.findYoungestEldestWorker().forEach(System.out::println);
         List<MaxProjectCountClient> maxProjectCountClients = new DatabaseQueryService().findMaxProjectsClient();
         List<LongestProject> longestProjects = new DatabaseQueryService().findLongestProject();
         List<MaxSalaryWorker> maxSalaryWorker = new DatabaseQueryService().findMaxSalaryWorker();
-        List<ProjectPrices> projectPrices = new DatabaseQueryService().printProjectPrices();
+        List<ProjectPrices> projectPrices = new DatabaseQueryService().projectPrices();
         List<YoungestEldestWorker> youngestEldestWorker = new DatabaseQueryService().findYoungestEldestWorker();
     }
 }

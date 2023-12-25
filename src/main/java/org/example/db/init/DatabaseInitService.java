@@ -23,6 +23,5 @@ public class DatabaseInitService {
                 throw new RuntimeException(e);
             }
         });
-        Database.getInstance().closeConnection();
     }
 }
