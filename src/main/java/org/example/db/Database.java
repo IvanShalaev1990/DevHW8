@@ -1,15 +1,16 @@
 package org.example.db;
 
 import lombok.SneakyThrows;
+import org.example.constance.Constance;
+import org.example.util.PropertiesUtil;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Objects;
 
 public class Database {
-    private static final String DB_URL = "jdbc:postgresql://localhost:5432/your_database";
-    private static final String USER_NAME = "your_user_name";
-    private static final String PASSWORD = "your_password";
+    private static final int TIMEOUT = 1000;
     private static Database database;
     private Connection connection;
 
@@ -28,13 +29,26 @@ public class Database {
     @SneakyThrows
     public Connection getConnection() {
         if (Objects.isNull(connection)) {
-            connection = DriverManager.getConnection(DB_URL, USER_NAME, PASSWORD);
+            setConnection();
+            return connection;
+        }
+        if (!connection.isValid(TIMEOUT)) {
+            setConnection();
             return connection;
         }
         return connection;
     }
+
     @SneakyThrows
-    public void closeConnection(){
+    public void closeConnection() {
         connection.close();
+    }
+
+    @SneakyThrows
+    private void setConnection() {
+        connection = DriverManager.getConnection(
+                PropertiesUtil.get(Constance.DB_URL),
+                PropertiesUtil.get(Constance.DB_USER_NAME),
+                PropertiesUtil.get(Constance.DB_PASSWORD));
     }
 }

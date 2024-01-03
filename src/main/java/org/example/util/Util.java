@@ -23,9 +23,4 @@ public class Util {
                 .map(it -> it + ";")
                 .collect(Collectors.toList());
     }
-
-    public static void main(String[] args) {
-        Util util = new Util();
-        util.listSQLCommandsFromFile("sql/find_longest_project.sql").forEach(System.out::println);
-    }
 }

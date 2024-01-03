@@ -15,6 +15,8 @@ dependencies {
     compileOnly("org.projectlombok:lombok:1.18.30")
     annotationProcessor("org.projectlombok:lombok:1.18.30")
     implementation("org.postgresql:postgresql:42.7.1")
+    implementation("org.flywaydb:flyway-core:8.5.13")
+    testImplementation("org.testcontainers:postgresql:1.19.3")
 
 }
 
